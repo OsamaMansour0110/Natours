@@ -9,7 +9,7 @@ export const UpdateSettings = async (data, type) => {
     // Access Url -> Run all middlewares are related to our URL
     const res = await axios({
       method: 'PATCH',
-      url: `http://127.0.0.1:3000/api/v1/users/${url}`,
+      url: `/api/v1/users/${url}`,
       data
     });
 

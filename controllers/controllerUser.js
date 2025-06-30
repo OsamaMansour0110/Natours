@@ -57,7 +57,7 @@ const filterObj = (obj, ...options) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  console.log(req.file, req.body);
+  // console.log(req.file, req.body);
   // 1) Handle password update
   if (req.body.password || req.body.passwordConfirm)
     return next(new AppError('change password in another route'), 400);
@@ -93,7 +93,7 @@ exports.deleteMe = async (req, res, next) => {
 };
 
 exports.getMe = (req, res, next) => {
-  console.log('here ');
+  // console.log('here ');
   req.params.id = req.user.id;
   next();
 };

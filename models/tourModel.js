@@ -171,10 +171,10 @@ TourScheme.pre(/^find/, function (next) {
   next();
 });
 
-TourScheme.post(/^find/, function (doc, next) {
-  console.log(`Time has been taken: ${Date.now() - this.start} MilliSeconds`);
-  next();
-});
+// TourScheme.post(/^find/, function (doc, next) {
+//   console.log(`Time has been taken: ${Date.now() - this.start} MilliSeconds`);
+//   next();
+// });
 
 //AGGREGATE MIDDLEWARE
 // TourScheme.pre('aggregate', function (next) {

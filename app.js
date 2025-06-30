@@ -16,6 +16,7 @@ const userRouter = require(`${__dirname}/Routes/userRoutes`);
 const reviewRouter = require(`${__dirname}/Routes/reviewRoutes`);
 const viewRouter = require('./Routes/viewRoutes');
 const bookingRouter = require('./Routes/bookingsRoutes');
+const compression = require('compression');
 
 const app = express();
 
@@ -89,6 +90,9 @@ app.use((req, res, next) => {
   // console.log(req.cookies);
   next();
 });
+
+// To compress the response text to client
+app.use(compression());
 
 // 2) ROUTES
 app.use('/', viewRouter);
