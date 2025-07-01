@@ -61,7 +61,7 @@ app.use('/api', limiter);
 // -STRIPE WEBHOOK: sending email, storing in DB
 app.post(
   '/webhook-checkout',
-  express.raw({ type: 'application.json' }),
+  express.raw({ type: 'application/json' }),
   bookingController.webhookCheckout
 );
 
