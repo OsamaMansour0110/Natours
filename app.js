@@ -22,24 +22,24 @@ const app = express();
 
 app.enable('trust proxy');
 
-app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' https://js.stripe.com; frame-src 'self' https://js.stripe.com;"
-  );
-  next();
-});
-
-// 1) GLOBAL MIDLEWARES
 // -Using pug with res.render To directory view
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+// 1) GLOBAL MIDLEWARES
+
+// -CROSS-ORIGIN RSOURCE SHARING: Make your api available to everyone to access
+// -Note That you deployement your app -> anyone can hit api/v1/tours or whatever
+// -The POWER of cors -> SHARING APIs ('Saving time, coding efforts') is it amazing?
+app.use(cors());
+
+// -Handle preflight requests (PUT/DELETE/PATCH)
+app.options('*', cors());
 
 // -Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // -SET security HTTP headers
-app.use(cors());
 app.use(
   helmet({
     contentSecurityPolicy: false
