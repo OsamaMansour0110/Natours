@@ -34,3 +34,11 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
+
+// For deployment on Render or Railway
+process.on('SIGTERM', () => {
+  console.log('SIGTERM RECEIVED, Shutting down gracefully...');
+  server.close(() => {
+    console.log('Process terminated');
+  });
+});

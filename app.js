@@ -20,6 +20,8 @@ const compression = require('compression');
 
 const app = express();
 
+app.enable('trust proxy');
+
 app.use((req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',

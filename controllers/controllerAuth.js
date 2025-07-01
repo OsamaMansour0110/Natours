@@ -13,17 +13,18 @@ const singToken = (id) => {
   });
 };
 
-const sendToken = (user, statusCode, res) => {
+const sendToken = (user, statusCode, req, res) => {
   const token = singToken(user._id);
 
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true
+    httpOnly: true,
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
   };
 
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  // if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
 
   // REMOVE password from response
@@ -42,7 +43,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}/me`;
   await new Email(user, url).sendWelcom();
   //TOKEN use to verify the sign in, expire time throw the session
-  sendToken(user, 201, res);
+  sendToken(user, 201, req, res);
 });
 
 exports.logIn = catchAsync(async (req, res, next) => {
@@ -59,7 +60,7 @@ exports.logIn = catchAsync(async (req, res, next) => {
     return next(new AppError('incorrect password or email', 401));
 
   // 3) Ruturn a token
-  sendToken(user, 200, res);
+  sendToken(user, 200, req, res);
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -188,7 +189,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save(); // don't use validateBeforeSave to check passwords
 
   // 3) Log in
-  sendToken(user, 200, res);
+  sendToken(user, 200, req, res);
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
@@ -206,5 +207,5 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // 4) Create token and login
-  sendToken(user, 200, res);
+  sendToken(user, 200, req, res);
 });
