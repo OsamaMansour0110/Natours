@@ -6,7 +6,7 @@ const viewRouter = express.Router();
 
 viewRouter.get(
   '/',
-  bookingControler.CreateBookingCheckout,
+  // bookingControler.CreateBookingCheckout,
   authController.isLoggedIn,
   viewController.getOverview
 );
