@@ -4,9 +4,9 @@ export const hideAlert = () => {
 };
 
 // Clear Pervious alert -- show alert for 5s only
-export const showAlert = (type, message) => {
+export const showAlert = (type, message, time) => {
   hideAlert();
   const alert = `<div class="alert alert--${type}">${message}</div>`;
   document.querySelector('body').insertAdjacentHTML('afterbegin', alert);
-  window.setTimeout(hideAlert, 5000);
+  window.setTimeout(hideAlert, time * 1000);
 };

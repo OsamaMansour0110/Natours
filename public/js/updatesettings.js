@@ -14,10 +14,10 @@ export const UpdateSettings = async (data, type) => {
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Updated Successfully');
+      showAlert('success', 'Updated Successfully', 5);
       setTimeout(() => location.reload(true), 1000);
     }
   } catch (error) {
-    showAlert('error', error.response.data.message);
+    showAlert('error', error.response.data.message, 5);
   }
 };

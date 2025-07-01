@@ -3,6 +3,7 @@ import { login, logout } from './login.js';
 import { UpdateSettings } from './updatesettings.js';
 // import { display_map } from './mapbox.js';
 import { bookTour } from './stripe.js';
+import { showAlert } from './alerts.js';
 
 // EVENTS
 const mapbox = document.getElementById('map');
@@ -92,3 +93,6 @@ if (BookTourBtn)
       e.target.textContent = 'book tour now!';
     }, 1500);
   });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alert) showAlert('success', alertMessage, 10);

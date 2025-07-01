@@ -15,7 +15,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     payment_method_types: ['card'],
     mode: 'payment', // used with price data
     // success_url: `${req.protocol}://${req.get('host')}/my-bookings/?tour=${tour.id}&user=${req.user.id}&price=${tour.price}`,
-    success_url: `${req.protocol}://${req.get('host')}/my-bookings`,
+    success_url: `${req.protocol}://${req.get('host')}/my-bookings?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.Slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourId,
