@@ -59,7 +59,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // -STRIPE WEBHOOK: sending email, storing in DB
-app.use(
+app.post(
   '/webhook-checkout',
   express.raw({ type: 'application.json' }),
   bookingController.webhookCheckout
