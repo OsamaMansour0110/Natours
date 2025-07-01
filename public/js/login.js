@@ -15,13 +15,13 @@ export const login = async (email, password) => {
 
     // If It's successful -> send the user to home page
     if (res.data.status === 'success') {
-      showAlert('success', 'logged in successfully', 5);
+      showAlert('success', 'logged in successfully', 3);
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
   } catch (error) {
-    showAlert('error', error.response.data.message, 5);
+    showAlert('error', error.response.data.message, 6);
   }
 };
 
@@ -33,6 +33,6 @@ export const logout = async () => {
     });
     if (res.data.status === 'success') location.reload(true);
   } catch (error) {
-    showAlert('error', 'Logged out Failed', 5);
+    showAlert('error', 'Logged out Failed', 3);
   }
 };
