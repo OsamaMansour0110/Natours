@@ -8,6 +8,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const globalErrorHandling = require(`${__dirname}/controllers/controllerError`);
 const appError = require(`${__dirname}/utils/appError`);
@@ -16,7 +17,7 @@ const userRouter = require(`${__dirname}/Routes/userRoutes`);
 const reviewRouter = require(`${__dirname}/Routes/reviewRoutes`);
 const viewRouter = require('./Routes/viewRoutes');
 const bookingRouter = require('./Routes/bookingsRoutes');
-const compression = require('compression');
+const bookingController = require('./controllers/controllerBookings');
 
 const app = express();
 
@@ -56,6 +57,13 @@ const limiter = rateLimit({
   message: 'Many request from this IP'
 });
 app.use('/api', limiter);
+
+// -STRIPE WEBHOOK: sending email, storing in DB
+app.use(
+  '/webhook-checkout',
+  express.raw({ type: 'application.json' }),
+  bookingController.webhookCheckout
+);
 
 // -Body Parser: reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
