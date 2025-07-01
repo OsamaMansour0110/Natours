@@ -9,6 +9,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const bodyParser = require('body-parser');
 
 const globalErrorHandling = require(`${__dirname}/controllers/controllerError`);
 const appError = require(`${__dirname}/utils/appError`);
@@ -61,7 +62,7 @@ app.use('/api', limiter);
 // -STRIPE WEBHOOK: sending email, storing in DB
 app.post(
   '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
+  bodyParser.raw({ type: 'application/json' }),
   bookingController.webhookCheckout
 );
 
