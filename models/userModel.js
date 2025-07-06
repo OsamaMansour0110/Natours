@@ -86,6 +86,7 @@ UserScheme.pre(/^find/, function (next) {
   next();
 });
 
+// Static Methods:
 UserScheme.methods.correctPassword = async function (InpPassword, password) {
   return await bcrypt.compare(InpPassword, password);
 };
