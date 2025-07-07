@@ -30,6 +30,8 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
+reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
+
 // Prevent duplicated reviews
 reviewSchema.index({ user: 1, tour: 1 }, { unique: true });
 
@@ -70,8 +72,6 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
     });
   }
 };
-
-reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
 
 reviewSchema.post('save', function () {
   // this point to current review
