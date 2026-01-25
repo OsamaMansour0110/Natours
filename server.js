@@ -13,13 +13,21 @@ const app = require(`${__dirname}/app`);
 
 //connect to atlas
 const DB = process.env.DATABASE;
+console.log('DATABASE URI:', process.env.DATABASE);
 
 // const DB = process.env.DATABASE.replace(
 //   '<PASSWORD>',
 //   process.env.DATABASE_PASSWORD
 // );
 
-mongoose.connect(DB).then(() => console.log('Connection successful'));
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000
+  })
+  .then(() => console.log('Connection successful'))
+  .catch((err) => console.error('DB connection error:', err));
 
 //Server
 const port = process.env.PORT || 3000;
