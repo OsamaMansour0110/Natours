@@ -360,10 +360,10 @@ body {
 
 @media only screen and (max-width: 62.5em) {
   .header {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 2rem 5rem;
+    align-content: space-around;
   }
 }
 
@@ -373,10 +373,7 @@ body {
 
 @media only screen and (max-width: 62.5em) {
   .header__logo {
-    -webkit-box-ordinal-group: 0;
-    -ms-flex-order: -1;
-    order: -1;
-    margin-bottom: 1.5rem;
+    order: 1;
   }
 }
 
@@ -992,22 +989,26 @@ body {
 
 @media only screen and (max-width: 62.5em) {
   .nav--tours {
-    margin-bottom: 1.5rem;
+    order: 3;
+    flex: 0 0 100%;
+    margin-top: 2rem;
+    justify-content: center;
+  }
+
+  .nav--tours .nav__search {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .nav--tours .nav__search-input {
+    width: 25rem;
+    text-align: center;
   }
 }
 
 @media only screen and (max-width: 37.5em) {
-
-  .nav--tours,
-  .nav--user {
-    flex: 0 1 auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .nav--tours {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -1018,6 +1019,13 @@ body {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
+}
+
+@media only screen and (max-width: 62.5em) {
+  .nav--user {
+    order: 2;
+    flex: 0 1 auto;
+  }
 }
 
 .nav__el,
