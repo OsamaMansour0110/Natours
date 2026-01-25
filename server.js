@@ -13,12 +13,13 @@ const app = require(`${__dirname}/app`);
 
 //connect to atlas
 const DB = process.env.DATABASE;
-console.log('DATABASE URI:', process.env.DATABASE);
+console.log('DATABASE URI:', DB); // للتأكد
 
 // const DB = process.env.DATABASE.replace(
 //   '<PASSWORD>',
 //   process.env.DATABASE_PASSWORD
 // );
+//DATABASE=mongodb+srv://osama:<PASSWORD>@cluster0.r6yvten.mongodb.net/natours?retryWrites=true
 
 mongoose
   .connect(DB, {
