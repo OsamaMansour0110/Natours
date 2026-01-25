@@ -997,8 +997,17 @@ body {
 }
 
 @media only screen and (max-width: 37.5em) {
+
+  .nav--tours,
+  .nav--user {
+    flex: 0 1 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .nav--tours {
-    margin-bottom: 0;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -1049,7 +1058,13 @@ body {
     margin-right: 0;
     margin-bottom: 1.2rem;
   }
+
+  .nav--user .nav__el:not(:last-child) {
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
 }
+
 
 .nav__el:focus {
   outline: none;
