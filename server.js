@@ -21,14 +21,7 @@ console.log('DATABASE URI:', DB); // للتأكد
 // );
 //DATABASE=mongodb+srv://osama:<PASSWORD>@cluster0.r6yvten.mongodb.net/natours?retryWrites=true
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000
-  })
-  .then(() => console.log('Connection successful'))
-  .catch((err) => console.error('DB connection error:', err));
+mongoose.connect(DB).then(() => console.log('Connection successful'));
 
 //Server
 const port = process.env.PORT || 3000;
